@@ -178,28 +178,24 @@ st.markdown(
         border-color: #3b82f6 !important;
     }
 
-    /* Horizontal scrollbar for the inventory table. The inner block is
-       given a minimum width wide enough to fit every column comfortably;
-       on any viewport narrower than that, the container below scrolls
-       left/right instead of squeezing the columns. The direct-child
-       combinator here is deliberate: it targets only the single outer
-       wrapper block for the whole table, not the per-column blocks
-       nested inside each row (which must stay their normal width). */
+    /* Inventory table horizontal scrollbar */
     .st-key-inventory_table_scroll {
-        overflow-x: auto;
-        overflow-y: visible;
-        padding-bottom: 14px;
-    }
-
-    .st-key-inventory_table_scroll > div[data-testid="stVerticalBlock"] {
-        min-width: 1100px;
-    }
-
-    /* Make that horizontal scrollbar big, colored, and impossible to
-       miss — instead of the thin, near-invisible browser default. */
-    .st-key-inventory_table_scroll {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        padding-bottom: 12px !important;
         scrollbar-width: auto;
         scrollbar-color: #3b82f6 #1e293b;
+    }
+
+    /* Keep the table wide enough so its columns do not collapse. */
+    .st-key-inventory_table_scroll > div[data-testid="stVerticalBlock"] {
+        width: max-content !important;
+        min-width: 1100px !important;
+        max-width: none !important;
     }
 
     .st-key-inventory_table_scroll::-webkit-scrollbar {
@@ -212,13 +208,13 @@ st.markdown(
     }
 
     .st-key-inventory_table_scroll::-webkit-scrollbar-thumb {
-        background-color: #3b82f6;
+        background: #3b82f6;
         border-radius: 999px;
         border: 2px solid #1e293b;
     }
 
     .st-key-inventory_table_scroll::-webkit-scrollbar-thumb:hover {
-        background-color: #2563eb;
+        background: #2563eb;
     }
 
     /* Add Stock ("+") and Remove Stock ("−") buttons: big, bold, clearly
